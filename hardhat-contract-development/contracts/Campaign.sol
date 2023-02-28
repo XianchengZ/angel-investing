@@ -15,7 +15,7 @@ contract Campaign {
     }
 
     function contribute() public payable {
-        require(msg.value > minimumContribution);
+        require(msg.value > minimumContribution, "not enough fund");
 
         investorsToFunding[msg.sender] += msg.value;
     }
