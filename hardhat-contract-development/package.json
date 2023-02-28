@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.1",
-    "hardhat": "^2.12.7"
+    "hardhat": "^2.12.7",
+    "solidity-coverage": "^0.8.2"
   }
 }
