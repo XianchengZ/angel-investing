@@ -10,6 +10,8 @@ contract Campaign {
         uint value;
         // address recipient; // arguable
         bool complete;
+        uint256 approvalCount;
+        mapping(address => bool) approvals;
     }
 
     // fields
@@ -17,6 +19,7 @@ contract Campaign {
     uint256 public minimumContribution;
     mapping(address => uint256) investorsToFunding;
     Request[] public requests;
+    uint numRequests;
 
     // modifiers
     modifier restricted() {
@@ -39,12 +42,10 @@ contract Campaign {
         string memory description,
         uint value
     ) public restricted {
-        Request memory newRequest = Request({
-            description: description,
-            value: value,
-            complete: false
-        });
-
-        requests.push(newRequest);
+        Request storage newRequest = requests[numRequests++];
+        newRequest.description = description;
+        newRequest.value = value;
+        newRequest.complete = false;
+        newRequest.approvalCount = 0;
     }
 }
